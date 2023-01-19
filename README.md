@@ -47,4 +47,4 @@ Customer {
 
 ### Submit your result
 
-Please clone this repository in a new github repository in private mode and share with ID: `mason-chase` in private mode on github.com and then create a PR that only shows what you have changed in the project, it means you must make sure that my commits are not erased from the history.
+Please clone this repository in a new github repository in private mode and share with ID: `mason-chase` in private mode on github.com and then create a [PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) that only shows what you have changed in the project, it means you must make sure that my commits are not erased from the history.
