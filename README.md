@@ -41,7 +41,7 @@ Customer {
 
 ### Storage (Must)
 
-- Use database of choice to store data.
+- Use database of choice to store data on the mobile.
 
 - Store the phone number in a database with minimized space storage (choose `varchar`/`string`, or `Uint64` whichever store less space).
 
