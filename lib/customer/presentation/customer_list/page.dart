@@ -23,43 +23,44 @@ class CustomerListPage extends StatelessWidget {
           title: const Text('Customer List'),
         ),
         body: Selector<CustomerListController, ViewStatus>(
-            selector: (_, controller) => controller.viewStatus,
-            builder: (context, viewStatus, _) {
-              if (viewStatus == ViewStatus.loaded) {
-                final controller = context.read<CustomerListController>();
-                final state = controller.state;
+          selector: (_, controller) => controller.viewStatus,
+          builder: (context, viewStatus, _) {
+            if (viewStatus == ViewStatus.loaded) {
+              final controller = context.read<CustomerListController>();
+              final state = controller.state;
 
-                if (state?.isEmpty ?? true) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          'assets/images/no-result.svg',
-                          width: 250,
-                        ),
-                        const Text('No customer found'),
-                        const SizedBox(height: 24),
-                        OutlinedButton(
-                          onPressed: () => controller.onTapNewCustomer(context),
-                          child: const Text("New customer"),
-                        ),
-                      ],
-                    ),
-                  );
-                }
-
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(state![index].firstname),
-                    );
-                  },
+              if (state?.isEmpty ?? true) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/no-result.svg',
+                        width: 250,
+                      ),
+                      const Text('No customer found'),
+                      const SizedBox(height: 24),
+                      OutlinedButton(
+                        onPressed: () => controller.onTapNewCustomer(context),
+                        child: const Text("New customer"),
+                      ),
+                    ],
+                  ),
                 );
               }
 
-              return const Center(child: CircularProgressIndicator.adaptive());
-            }),
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(state![index].firstname),
+                  );
+                }, 
+              );
+            }
+
+            return const Center(child: CircularProgressIndicator.adaptive());
+          },
+        ),
       ),
     );
   }
