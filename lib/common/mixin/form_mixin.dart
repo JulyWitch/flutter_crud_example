@@ -23,7 +23,6 @@ mixin FormMixin on ChangeNotifier {
   }
 
   Map<String, dynamic> saveForm() {
-    _formFields.clear();
     formKey.currentState!.save();
 
     return _formFields;
