@@ -1,0 +1,40 @@
+import 'package:mc_crud_test/customer/domain/entity/customer.dart';
+import 'package:mc_crud_test/customer/domain/interface/customer_repository.dart';
+
+class CustomerFacadeService {
+  final CustomerRepository repository;
+
+  CustomerFacadeService({
+    required this.repository,
+  });
+
+  Future<void> add(CustomerEntity customer) {
+    return repository.add(customer);
+  }
+
+  Future<void> delete(CustomerEntity customer) {
+    return repository.delete(customer);
+  }
+
+  Future<CustomerEntity> get(String id) {
+    return repository.get(id);
+  }
+
+  Future<List<CustomerEntity>> getAll() {
+    return repository.getAll();
+  }
+
+  Future<bool> isEmailAvailable(String email) {
+    return repository.isEmailAvailable(email);
+  }
+
+  Future<bool> isFirstNameLastNameBirthDateAvailable(
+      String firstName, String lastName, DateTime birthDate) {
+    return repository.isFirstNameLastNameBirthDateAvailable(
+        firstName, lastName, birthDate);
+  }
+
+  Future<void> update(CustomerEntity customer) {
+    return repository.update(customer);
+  }
+}
