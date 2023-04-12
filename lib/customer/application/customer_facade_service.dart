@@ -16,7 +16,7 @@ class CustomerFacadeService {
     return repository.delete(customer);
   }
 
-  Future<CustomerEntity> get(String id) {
+  Future<CustomerEntity?> get(String id) {
     return repository.get(id);
   }
 
