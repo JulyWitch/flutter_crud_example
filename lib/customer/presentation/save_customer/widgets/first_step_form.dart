@@ -24,6 +24,7 @@ class FirstStepForm extends StatelessWidget {
             Expanded(
               child: TextFormField(
                 onSaved: onSavedFirstName,
+                textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
                   labelText: 'First name',
                   errorMaxLines: 2,
@@ -39,6 +40,7 @@ class FirstStepForm extends StatelessWidget {
             Expanded(
               child: TextFormField(
                 onSaved: onSavedLastName,
+                textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
                   labelText: 'Last name',
                   errorMaxLines: 2,

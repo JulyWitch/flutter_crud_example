@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import 'package:mc_crud_test/customer/presentation/save_customer/controller.dart';
@@ -15,7 +17,9 @@ class SaveCustomerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SaveCustomerController(),
+      create: (context) => SaveCustomerController(
+        service: GetIt.I.get(),
+      ),
       builder: (context, _) {
         final SaveCustomerController controller = context.read();
 
@@ -45,22 +49,30 @@ class SaveCustomerPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 48),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Selector<SaveCustomerController, int>(
-                        selector: (p0, p1) => p1.page,
-                        builder: (context, value, _) {
-                          return Text(
-                            value == 0
-                                ? 'Personal Information'
-                                : 'Bank Information',
-                            style: Theme.of(context).textTheme.titleLarge,
-                          );
-                        },
-                      ),
+                    KeyboardVisibilityBuilder(
+                      builder: (context, isKeyboardVisible) {
+                        if (isKeyboardVisible) {
+                          return const SizedBox();
+                        }
+                        return Align(
+                          alignment: Alignment.topLeft,
+                          child: Selector<SaveCustomerController, int>(
+                            selector: (p0, p1) => p1.page,
+                            builder: (context, value, _) {
+                              return Text(
+                                value == 0
+                                    ? 'Personal Information'
+                                    : 'Bank Information',
+                                style: Theme.of(context).textTheme.titleLarge,
+                              );
+                            },
+                          ),
+                        );
+                      },
                     ),
                     Expanded(
                       child: PageView(
+                        physics: const NeverScrollableScrollPhysics(),
                         controller: controller.pageController,
                         children: [
                           FirstStepForm(
@@ -75,14 +87,30 @@ class SaveCustomerPage extends StatelessWidget {
                             onSavedEmail: controller.saveField('email'),
                             onSavedPhoneNumber:
                                 controller.saveField('phoneNumber'),
-                          )
+                          ),
                         ],
                       ),
+                    ),
+                    Selector<SaveCustomerController, String?>(
+                      selector: (p0, p1) => p1.errorText,
+                      builder: (context, value, child) {
+                        if (value == null) {
+                          return const SizedBox();
+                        }
+
+                        return Text(value,
+                            style: Theme.of(context)
+                                .textTheme
+                                .caption
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.error,
+                                ));
+                      },
                     ),
                     Align(
                       alignment: Alignment.centerRight,
                       child: ElevatedButton.icon(
-                        onPressed: controller.onTapSubmit,
+                        onPressed: () => controller.onTapSubmit(context),
                         icon: const Icon(Icons.chevron_right),
                         label: const Text(
                           'Next',

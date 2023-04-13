@@ -29,9 +29,9 @@ class CustomerFacadeService {
   }
 
   Future<bool> isFirstNameLastNameBirthDateAvailable(
-      String firstName, String lastName, DateTime birthDate) {
+      String firstName, String lastName, DateTime dateOfBirth) {
     return repository.isFirstNameLastNameBirthDateAvailable(
-        firstName, lastName, birthDate);
+        firstName, lastName, dateOfBirth);
   }
 
   Future<void> update(CustomerEntity customer) {

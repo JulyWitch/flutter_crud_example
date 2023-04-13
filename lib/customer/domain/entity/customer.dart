@@ -36,6 +36,8 @@ class CustomerEntity extends Equatable {
     required this.bankAccountNumber,
   });
 
+  String get fullPhoneNumber => '+$phoneNumber'; 
+
   @override
   List<Object?> get props => [
         id,

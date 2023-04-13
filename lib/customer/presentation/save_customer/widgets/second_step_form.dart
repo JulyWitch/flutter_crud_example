@@ -22,7 +22,7 @@ class SecondStepForm extends StatelessWidget {
         InternationalPhoneNumberInput(
           onInputChanged: (value) {},
           countries: const ['GB', 'US', 'IR'],
-          onSaved: (phoneNumber) => onSavedPhoneNumber(phoneNumber.toString()),
+          onSaved: (phoneNumber) => onSavedPhoneNumber(phoneNumber.phoneNumber),
         ),
         const SizedBox(height: 16),
         TextFormField(

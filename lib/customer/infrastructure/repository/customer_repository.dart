@@ -36,11 +36,11 @@ class CustomerRepositoryImpl extends CustomerRepository {
 
   @override
   Future<bool> isFirstNameLastNameBirthDateAvailable(
-      String firstName, String lastName, DateTime birthDate) async {
+      String firstName, String lastName, DateTime dateOfBirth) async {
     return dataProvider.isFirstNameLastNameBirthDateAvailable(
       firstName,
       lastName,
-      birthDate,
+      dateOfBirth,
     );
   }
 

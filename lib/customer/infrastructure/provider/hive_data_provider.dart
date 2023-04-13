@@ -1,4 +1,4 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mc_crud_test/customer/domain/entity/customer.dart';
 import 'package:uuid/uuid.dart';
 
@@ -46,12 +46,12 @@ class HiveDataProvider {
   }
 
   bool isFirstNameLastNameBirthDateAvailable(
-      String firstName, String lastName, DateTime birthDate) {
+      String firstName, String lastName, DateTime dateOfBirth) {
     return box.values.any(
       (element) =>
           element.firstName == firstName &&
           element.lastName == lastName &&
-          element.dateOfBirth == birthDate,
+          element.dateOfBirth == dateOfBirth,
     );
   }
 }

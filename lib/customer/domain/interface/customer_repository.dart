@@ -10,6 +10,6 @@ abstract class CustomerRepository {
   Future<bool> isFirstNameLastNameBirthDateAvailable(
     String firstName,
     String lastName,
-    DateTime birthDate,
+    DateTime dateOfBirth,
   );
 }

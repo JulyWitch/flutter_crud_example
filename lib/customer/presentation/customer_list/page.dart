@@ -52,7 +52,7 @@ class CustomerListPage extends StatelessWidget {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(state![index].firstname),
+                    title: Text(state![index].firstName),
                   );
                 }, 
               );
