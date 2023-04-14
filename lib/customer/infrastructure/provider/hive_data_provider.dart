@@ -42,12 +42,12 @@ class HiveDataProvider {
   }
 
   bool isEmailAvailable(String email) {
-    return box.values.any((element) => element.email != email);
+    return !box.values.any((element) => element.email != email);
   }
 
   bool isFirstNameLastNameBirthDateAvailable(
       String firstName, String lastName, DateTime dateOfBirth) {
-    return box.values.any(
+    return !box.values.any(
       (element) =>
           element.firstName == firstName &&
           element.lastName == lastName &&

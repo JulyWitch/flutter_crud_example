@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:mc_crud_test/customer/domain/entity/customer.dart';
 import 'package:mc_crud_test/customer/presentation/customer_list/page.dart';
 import 'package:mc_crud_test/customer/presentation/save_customer/page.dart';
 
@@ -15,7 +16,9 @@ class Routes {
       ),
       GoRoute(
         path: saveCustomer,
-        builder: (context, state) => const SaveCustomerPage(),
+        builder: (context, state) => SaveCustomerPage(
+          initialValue: state.extra as CustomerEntity?,
+        ),
       ),
     ],
   );

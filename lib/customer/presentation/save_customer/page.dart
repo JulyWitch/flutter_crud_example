@@ -3,6 +3,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
+import 'package:mc_crud_test/customer/domain/entity/customer.dart';
 import 'package:mc_crud_test/customer/presentation/save_customer/controller.dart';
 
 import 'widgets/customer_progress_indicator.dart';
@@ -12,19 +13,29 @@ import 'widgets/second_step_form.dart';
 /// This page is used to create a new customer or update an existing one.
 /// And for this reason, it is called SaveCustomerPage.
 class SaveCustomerPage extends StatelessWidget {
-  const SaveCustomerPage({super.key});
+  const SaveCustomerPage({
+    Key? key,
+    this.initialValue,
+  }) : super(key: key);
+
+  final CustomerEntity? initialValue;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => SaveCustomerController(
         service: GetIt.I.get(),
+        initialValue: initialValue,
       ),
       builder: (context, _) {
         final SaveCustomerController controller = context.read();
 
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            leading: BackButton(
+              onPressed: () => controller.onTapBackButton(context),
+            ),
+          ),
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -33,42 +44,43 @@ class SaveCustomerPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: SizedBox(
-                        height: 20,
-                        width: double.infinity,
-                        child: Selector<SaveCustomerController, int>(
-                          selector: (p0, p1) => p1.page,
-                          builder: (context, value, _) {
-                            return CustomerProgressIndicator(
-                              progress: value == 0 ? 0.5 : 1,
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 48),
                     KeyboardVisibilityBuilder(
                       builder: (context, isKeyboardVisible) {
                         if (isKeyboardVisible) {
                           return const SizedBox();
                         }
-                        return Align(
-                          alignment: Alignment.topLeft,
-                          child: Selector<SaveCustomerController, int>(
-                            selector: (p0, p1) => p1.page,
-                            builder: (context, value, _) {
-                              return Text(
-                                value == 0
-                                    ? 'Personal Information'
-                                    : 'Bank Information',
-                                style: Theme.of(context).textTheme.titleLarge,
-                              );
-                            },
-                          ),
+                        return Column(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                              width: double.infinity,
+                              child: Selector<SaveCustomerController, int>(
+                                selector: (p0, p1) => p1.page,
+                                builder: (context, value, _) {
+                                  return CustomerProgressIndicator(
+                                    progress: value == 0 ? 0.5 : 1,
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 48),
+                          ],
                         );
                       },
+                    ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Selector<SaveCustomerController, int>(
+                        selector: (p0, p1) => p1.page,
+                        builder: (context, value, _) {
+                          return Text(
+                            value == 0
+                                ? 'Personal Information'
+                                : 'Bank Information',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          );
+                        },
+                      ),
                     ),
                     Expanded(
                       child: PageView(
@@ -76,12 +88,19 @@ class SaveCustomerPage extends StatelessWidget {
                         controller: controller.pageController,
                         children: [
                           FirstStepForm(
+                            initialFirstName: initialValue?.firstName,
+                            initialLastName: initialValue?.lastName,
+                            initialBirthDate: initialValue?.dateOfBirth,
                             onSavedBirthDate:
                                 controller.saveField('dateOfBirth'),
                             onSavedFirstName: controller.saveField('firstName'),
                             onSavedLastName: controller.saveField('lastName'),
                           ),
                           SecondStepForm(
+                            initiaBankAccount: initialValue?.bankAccountNumber,
+                            initialEmail: initialValue?.email,
+                            initialPhoneNumber:
+                                initialValue?.formattedPhoneNumber,
                             onSavedBankAccount:
                                 controller.saveField('bankAccountNumber'),
                             onSavedEmail: controller.saveField('email'),
@@ -91,6 +110,7 @@ class SaveCustomerPage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const SizedBox(height: 48),
                     Selector<SaveCustomerController, String?>(
                       selector: (p0, p1) => p1.errorText,
                       builder: (context, value, child) {
@@ -98,13 +118,16 @@ class SaveCustomerPage extends StatelessWidget {
                           return const SizedBox();
                         }
 
-                        return Text(value,
-                            style: Theme.of(context)
-                                .textTheme
-                                .caption
-                                ?.copyWith(
-                                  color: Theme.of(context).colorScheme.error,
-                                ));
+                        return Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(value,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .caption
+                                  ?.copyWith(
+                                    color: Theme.of(context).colorScheme.error,
+                                  )),
+                        );
                       },
                     ),
                     Align(

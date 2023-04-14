@@ -7,9 +7,11 @@ class SaveCustomerController extends ChangeNotifier with FormMixin {
   bool isButtonLoading = false;
   final PageController pageController = PageController();
   final CustomerFacadeService service;
+  final CustomerEntity? initialValue;
 
   SaveCustomerController({
     required this.service,
+    required this.initialValue,
   }) {
     init();
   }
@@ -35,12 +37,16 @@ class SaveCustomerController extends ChangeNotifier with FormMixin {
       notifyListeners();
 
       if (pageController.page == 0) {
-        final isPersonalInformationAvailable =
-            await service.isFirstNameLastNameBirthDateAvailable(
-          map['firstName'],
-          map['lastName'],
-          map['dateOfBirth'],
-        );
+        bool isPersonalInformationAvailable = true;
+
+        if (initialValue == null) {
+          isPersonalInformationAvailable =
+              await service.isFirstNameLastNameBirthDateAvailable(
+            map['firstName'],
+            map['lastName'],
+            map['dateOfBirth'],
+          );
+        }
 
         if (isPersonalInformationAvailable) {
           page = 1;
@@ -53,7 +59,7 @@ class SaveCustomerController extends ChangeNotifier with FormMixin {
         }
       } else if (pageController.page == 1) {
         final customer = CustomerEntity(
-          id: '',
+          id: initialValue == null ? '' : initialValue!.id,
           firstName: map['firstName'],
           lastName: map['lastName'],
           dateOfBirth: map['dateOfBirth'],
@@ -63,12 +69,33 @@ class SaveCustomerController extends ChangeNotifier with FormMixin {
           bankAccountNumber: map['bankAccountNumber'],
         );
 
-        await service.add(customer);
+        Future future;
+        if (initialValue == null) {
+          future = service.add(customer);
+        } else {
+          future = service.update(customer);
+        }
+
+        await future;
 
         Navigator.pop(context);
       } else {
         throw UnimplementedError();
       }
+      notifyListeners();
+    }
+  }
+
+  void onTapBackButton(BuildContext context) {
+    if (pageController.page == 0) {
+      Navigator.pop(context);
+    } else {
+      pageController.previousPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+      page--;
+
       notifyListeners();
     }
   }

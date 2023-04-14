@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+
 import 'package:mc_crud_test/common/utils/validators.dart';
 
 class FirstStepForm extends StatelessWidget {
   const FirstStepForm({
     Key? key,
+    required this.initialFirstName,
+    required this.initialLastName,
+    required this.initialBirthDate,
     required this.onSavedFirstName,
     required this.onSavedLastName,
     required this.onSavedBirthDate,
   }) : super(key: key);
+
+  final String? initialFirstName;
+  final String? initialLastName;
+  final DateTime? initialBirthDate;
 
   final FormFieldSetter<String> onSavedFirstName;
   final FormFieldSetter<String> onSavedLastName;
@@ -23,6 +31,7 @@ class FirstStepForm extends StatelessWidget {
           children: [
             Expanded(
               child: TextFormField(
+                initialValue: initialFirstName,
                 onSaved: onSavedFirstName,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
@@ -39,6 +48,7 @@ class FirstStepForm extends StatelessWidget {
             const SizedBox(width: 16),
             Expanded(
               child: TextFormField(
+                initialValue: initialLastName,
                 onSaved: onSavedLastName,
                 textInputAction: TextInputAction.next,
                 decoration: const InputDecoration(
@@ -57,6 +67,7 @@ class FirstStepForm extends StatelessWidget {
         const SizedBox(height: 16),
         InputDatePickerFormField(
           fieldLabelText: 'Birth date',
+          initialDate: initialBirthDate,
           onDateSaved: onSavedBirthDate,
           firstDate: DateTime(1900),
           lastDate: DateTime.now(),
