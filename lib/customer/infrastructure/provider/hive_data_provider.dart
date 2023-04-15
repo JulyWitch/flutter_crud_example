@@ -22,7 +22,7 @@ class HiveDataProvider {
 
     final newModel = model.copyWith(id: id);
 
-    return box.put(uuid.v4(), newModel);
+    return box.put(id, newModel);
   }
 
   Future<void> update(CustomerEntity model) {
@@ -37,7 +37,7 @@ class HiveDataProvider {
     return box.get(id);
   }
 
-  List<CustomerEntity> getAll() {
+  Future<List<CustomerEntity>> getAll() async {
     return box.values.toList();
   }
 

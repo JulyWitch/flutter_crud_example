@@ -8,6 +8,7 @@ class SaveCustomerController extends ChangeNotifier with FormMixin {
   final PageController pageController = PageController();
   final CustomerFacadeService service;
   final CustomerEntity? initialValue;
+  final GlobalKey<FormState> firstFormKey = GlobalKey();
 
   SaveCustomerController({
     required this.service,
