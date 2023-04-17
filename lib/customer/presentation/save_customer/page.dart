@@ -76,7 +76,7 @@ class SaveCustomerPage extends StatelessWidget {
                           return Text(
                             value == 0
                                 ? 'Personal Information'
-                                : 'Bank Information',
+                                : 'Extra Information',
                             style: Theme.of(context).textTheme.titleLarge,
                           );
                         },
@@ -106,6 +106,7 @@ class SaveCustomerPage extends StatelessWidget {
                             onSavedEmail: controller.saveField('email'),
                             onSavedPhoneNumber:
                                 controller.saveField('phoneNumber'),
+                            isEmailAvaliable: controller.isEmailAvaliable,
                           ),
                         ],
                       ),
@@ -132,12 +133,18 @@ class SaveCustomerPage extends StatelessWidget {
                     ),
                     Align(
                       alignment: Alignment.centerRight,
-                      child: ElevatedButton.icon(
-                        onPressed: () => controller.onTapSubmit(context),
-                        icon: const Icon(Icons.chevron_right),
-                        label: const Text(
-                          'Next',
-                        ),
+                      child: Consumer<SaveCustomerController>(
+                        builder: (context, controller, child) {
+                          return ElevatedButton.icon(
+                            onPressed: controller.isButtonLoading
+                                ? null
+                                : () => controller.onTapSubmit(context),
+                            icon: const Icon(Icons.chevron_right),
+                            label: Text(
+                              controller.page == 0 ? 'Next' : 'Save',
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],

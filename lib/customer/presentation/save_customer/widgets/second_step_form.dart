@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import 'package:mc_crud_test/common/utils/validators.dart';
+import 'package:mc_crud_test/customer/presentation/widgets/async_text_form_field.dart';
 
 class SecondStepForm extends StatelessWidget {
   const SecondStepForm({
@@ -12,6 +13,7 @@ class SecondStepForm extends StatelessWidget {
     required this.onSavedPhoneNumber,
     required this.onSavedEmail,
     required this.onSavedBankAccount,
+    required this.isEmailAvaliable,
   }) : super(key: key);
 
   final String? initialPhoneNumber;
@@ -21,6 +23,8 @@ class SecondStepForm extends StatelessWidget {
   final FormFieldSetter<String> onSavedPhoneNumber;
   final FormFieldSetter<String> onSavedEmail;
   final FormFieldSetter<String> onSavedBankAccount;
+
+  final Future<bool> Function(String) isEmailAvaliable;
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +36,20 @@ class SecondStepForm extends StatelessWidget {
           initialPhoneNumber: initialPhoneNumber,
         ),
         const SizedBox(height: 16),
-        TextFormField(
+        AsyncTextFormField(
           initialValue: initialEmail,
-          validator: FormValidators().email().required().build(),
+          autovalidateMode: AutovalidateMode.disabled,
+          validator: (value) async {
+            String? error = FormValidators().email().required().build()(value);
+
+            if(error == null)  {
+              if(!(await isEmailAvaliable(value))) {
+                error = 'This email already exists!';
+              }
+            }
+
+            return error;
+          },
           onSaved: onSavedEmail,
           decoration: const InputDecoration(
             labelText: 'Email',

@@ -83,6 +83,8 @@ class SaveCustomerController extends ChangeNotifier with FormMixin {
       } else {
         throw UnimplementedError();
       }
+
+      isButtonLoading = false;
       notifyListeners();
     }
   }
@@ -99,5 +101,9 @@ class SaveCustomerController extends ChangeNotifier with FormMixin {
 
       notifyListeners();
     }
+  }
+
+  Future<bool> isEmailAvaliable(String email) {
+    return service.isEmailAvailable(email);
   }
 }
