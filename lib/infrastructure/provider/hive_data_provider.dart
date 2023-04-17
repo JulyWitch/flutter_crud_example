@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mc_crud_test/customer/domain/entity/customer.dart';
+import 'package:mc_crud_test/domain/entity/customer.dart';
 import 'package:uuid/uuid.dart';
 
 const _boxName = 'customer';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mc_crud_test/common/mixin/form_mixin.dart';
-import 'package:mc_crud_test/customer/application/customer_facade_service.dart';
-import 'package:mc_crud_test/customer/domain/entity/customer.dart';
+import 'package:mc_crud_test/application/customer_facade_service.dart';
+import 'package:mc_crud_test/domain/entity/customer.dart';
 
 class SaveCustomerController extends ChangeNotifier with FormMixin {
   bool isButtonLoading = false;

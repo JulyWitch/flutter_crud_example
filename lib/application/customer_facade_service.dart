@@ -1,5 +1,5 @@
-import 'package:mc_crud_test/customer/domain/entity/customer.dart';
-import 'package:mc_crud_test/customer/domain/interface/customer_repository.dart';
+import 'package:mc_crud_test/domain/entity/customer.dart';
+import 'package:mc_crud_test/domain/interface/customer_repository.dart';
 
 class CustomerFacadeService {
   final CustomerRepository repository;
