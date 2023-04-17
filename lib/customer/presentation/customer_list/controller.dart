@@ -65,7 +65,7 @@ class CustomerListController extends ChangeNotifier
   }
 
   Future<void> onRefresh() async {
-    await init();
+    await init(true);
 
     refreshController.refreshCompleted();
   }

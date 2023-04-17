@@ -53,7 +53,7 @@ class HiveDataProvider {
   Future<bool> isEmailAvailable(String email) async {
     await Future.delayed(const Duration(milliseconds: 500));
 
-    return !box.values.any((element) => element.email != email);
+    return box.values.every((element) => element.email.toLowerCase() != email.toLowerCase());
   }
 
   Future<bool> isFirstNameLastNameBirthDateAvailable(
@@ -62,8 +62,8 @@ class HiveDataProvider {
 
     return !box.values.any(
       (element) =>
-          element.firstName == firstName &&
-          element.lastName == lastName &&
+          element.firstName.toLowerCase() == firstName.toLowerCase() &&
+          element.lastName.toLowerCase() == lastName.toLowerCase() &&
           element.dateOfBirth == dateOfBirth,
     );
   }
