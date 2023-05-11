@@ -136,6 +136,7 @@ class SaveCustomerPage extends StatelessWidget {
                       child: Consumer<SaveCustomerController>(
                         builder: (context, controller, child) {
                           return ElevatedButton.icon(
+                            key: const ValueKey('submitButton'),
                             onPressed: controller.isButtonLoading
                                 ? null
                                 : () => controller.onTapSubmit(context),

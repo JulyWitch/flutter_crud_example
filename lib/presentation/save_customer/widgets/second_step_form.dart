@@ -37,6 +37,7 @@ class SecondStepForm extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         AsyncTextFormField(
+          key: const ValueKey('emailField'),
           initialValue: initialEmail,
           autovalidateMode: AutovalidateMode.disabled,
           validator: (value) async {
@@ -57,6 +58,7 @@ class SecondStepForm extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         TextFormField(
+          key: const ValueKey('bankAccountField'),
           initialValue: initiaBankAccount,
           validator:
               FormValidators().minLength(9).maxLength(18).required().build(),
@@ -90,6 +92,7 @@ class _PhoneNumberInputState extends State<_PhoneNumberInput> {
   Widget build(BuildContext context) {
     if (isEditing) {
       return InternationalPhoneNumberInput(
+        key: const ValueKey('phoneNumberField'),
         initialValue: widget.initialPhoneNumber == null
             ? null
             : PhoneNumber(phoneNumber: widget.initialPhoneNumber),

@@ -31,6 +31,7 @@ class FirstStepForm extends StatelessWidget {
           children: [
             Expanded(
               child: TextFormField(
+                key: const ValueKey('firstNameField'),
                 initialValue: initialFirstName,
                 onSaved: onSavedFirstName,
                 textInputAction: TextInputAction.next,
@@ -48,6 +49,7 @@ class FirstStepForm extends StatelessWidget {
             const SizedBox(width: 16),
             Expanded(
               child: TextFormField(
+                key: const ValueKey('lastNameField'),
                 initialValue: initialLastName,
                 onSaved: onSavedLastName,
                 textInputAction: TextInputAction.next,
@@ -66,6 +68,7 @@ class FirstStepForm extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         InputDatePickerFormField(
+          key: const ValueKey('birthDateField'),
           fieldLabelText: 'Birth date',
           initialDate: initialBirthDate,
           onDateSaved: onSavedBirthDate,
