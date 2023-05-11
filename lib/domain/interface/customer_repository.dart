@@ -1,4 +1,4 @@
-import 'package:mc_crud_test/domain/entity/customer.dart';
+import 'package:customer_management/domain/entity/customer.dart';
 
 abstract class CustomerRepository {
   Future<CustomerEntity?> get(String id);

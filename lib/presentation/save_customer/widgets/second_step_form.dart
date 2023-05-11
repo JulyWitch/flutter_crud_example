@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-import 'package:mc_crud_test/common/utils/validators.dart';
-import 'package:mc_crud_test/presentation/widgets/async_text_form_field.dart';
+import 'package:customer_management/common/utils/validators.dart';
+import 'package:customer_management/presentation/widgets/async_text_form_field.dart';
 
 class SecondStepForm extends StatelessWidget {
   const SecondStepForm({

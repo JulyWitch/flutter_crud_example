@@ -1,6 +1,6 @@
-import 'package:mc_crud_test/domain/entity/customer.dart';
-import 'package:mc_crud_test/domain/interface/customer_repository.dart';
-import 'package:mc_crud_test/infrastructure/provider/hive_data_provider.dart';
+import 'package:customer_management/domain/entity/customer.dart';
+import 'package:customer_management/domain/interface/customer_repository.dart';
+import 'package:customer_management/infrastructure/provider/hive_data_provider.dart';
 
 class CustomerRepositoryImpl extends CustomerRepository {
   final HiveDataProvider dataProvider;

@@ -1,4 +1,4 @@
-package com.example.mc_crud_test
+package com.example.customer_management
 
 import io.flutter.embedding.android.FlutterActivity
 

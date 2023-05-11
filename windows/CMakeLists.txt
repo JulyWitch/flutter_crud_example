@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(mc_crud_test LANGUAGES CXX)
+project(customer_management LANGUAGES CXX)
 
-set(BINARY_NAME "mc_crud_test")
+set(BINARY_NAME "customer_management")
 
 cmake_policy(SET CMP0063 NEW)
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mc_crud_test/common/theme/default.dart';
-import 'package:mc_crud_test/injections.dart';
-import 'package:mc_crud_test/presentation/routes.dart';
+import 'package:customer_management/common/theme/default.dart';
+import 'package:customer_management/injections.dart';
+import 'package:customer_management/presentation/routes.dart';
 
 Future<void> main() async {
   runApp(const SplashApp());

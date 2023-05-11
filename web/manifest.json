@@ -1,6 +1,6 @@
 {
-    "name": "mc_crud_test",
-    "short_name": "mc_crud_test",
+    "name": "customer_management",
+    "short_name": "customer_management",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

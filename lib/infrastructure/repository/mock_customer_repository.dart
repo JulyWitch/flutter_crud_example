@@ -1,5 +1,5 @@
-import 'package:mc_crud_test/domain/entity/customer.dart';
-import 'package:mc_crud_test/domain/interface/customer_repository.dart';
+import 'package:customer_management/domain/entity/customer.dart';
+import 'package:customer_management/domain/interface/customer_repository.dart';
 
 // A mock repository for customer repository
 class MockCustomerRepository extends CustomerRepository {

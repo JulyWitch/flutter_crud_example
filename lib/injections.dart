@@ -1,11 +1,11 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mc_crud_test/application/customer_facade_service.dart';
-import 'package:mc_crud_test/config/main.dart';
-import 'package:mc_crud_test/domain/interface/customer_repository.dart';
-import 'package:mc_crud_test/infrastructure/provider/hive_data_provider.dart';
-import 'package:mc_crud_test/infrastructure/repository/customer_repository.dart';
-import 'package:mc_crud_test/infrastructure/repository/mock_customer_repository.dart';
+import 'package:customer_management/application/customer_facade_service.dart';
+import 'package:customer_management/config/main.dart';
+import 'package:customer_management/domain/interface/customer_repository.dart';
+import 'package:customer_management/infrastructure/provider/hive_data_provider.dart';
+import 'package:customer_management/infrastructure/repository/customer_repository.dart';
+import 'package:customer_management/infrastructure/repository/mock_customer_repository.dart';
 import 'package:uuid/uuid.dart';
 
 final serviceLocator = GetIt.instance;

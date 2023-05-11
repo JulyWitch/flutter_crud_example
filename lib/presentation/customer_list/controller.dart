@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mc_crud_test/common/mixin/state_mixin.dart';
-import 'package:mc_crud_test/application/customer_facade_service.dart';
-import 'package:mc_crud_test/domain/entity/customer.dart';
-import 'package:mc_crud_test/presentation/widgets/dialogs/confirm_dialog.dart';
-import 'package:mc_crud_test/presentation/routes.dart';
+import 'package:customer_management/common/mixin/state_mixin.dart';
+import 'package:customer_management/application/customer_facade_service.dart';
+import 'package:customer_management/domain/entity/customer.dart';
+import 'package:customer_management/presentation/widgets/dialogs/confirm_dialog.dart';
+import 'package:customer_management/presentation/routes.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class CustomerListController extends ChangeNotifier

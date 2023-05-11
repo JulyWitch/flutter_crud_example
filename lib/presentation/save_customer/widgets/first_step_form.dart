@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:mc_crud_test/common/utils/validators.dart';
+import 'package:customer_management/common/utils/validators.dart';
 
 class FirstStepForm extends StatelessWidget {
   const FirstStepForm({

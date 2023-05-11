@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mc_crud_test/application/customer_facade_service.dart';
-import 'package:mc_crud_test/common/mixin/state_mixin.dart';
-import 'package:mc_crud_test/presentation/customer_list/controller.dart';
+import 'package:customer_management/application/customer_facade_service.dart';
+import 'package:customer_management/common/mixin/state_mixin.dart';
+import 'package:customer_management/presentation/customer_list/controller.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

@@ -3,8 +3,8 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
-import 'package:mc_crud_test/domain/entity/customer.dart';
-import 'package:mc_crud_test/presentation/save_customer/controller.dart';
+import 'package:customer_management/domain/entity/customer.dart';
+import 'package:customer_management/presentation/save_customer/controller.dart';
 
 import 'widgets/customer_progress_indicator.dart';
 import 'widgets/first_step_form.dart';
